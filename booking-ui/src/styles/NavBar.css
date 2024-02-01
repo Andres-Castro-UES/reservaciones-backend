@@ -6,3 +6,7 @@
 .navbar-brand > img {
     height: 2rem;
 }
+
+.navbar-header{
+    background-color: #203ec2;
+}

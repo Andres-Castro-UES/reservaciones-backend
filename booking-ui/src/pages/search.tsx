@@ -700,6 +700,8 @@ class Search extends React.Component<Props, State> {
               </Col>
             </Form.Group>
           </Form>
+          <br />
+          <p>Lunes a Viernes de 8:00-16:00 y Sábados de 8:00-12:00</p>
         </div>
       </div>
     );
