@@ -96,7 +96,7 @@
     "showMap": "Mostrar mapa",
     "gotoBooking": "Mostrar reservación",
     "administration": "Administración",
-    "datePickerFormat": "dd-MM-y HH", 
+    "datePickerFormat": "dd-MM-y HH:mm", 
     "datePickerFormatDailyBasisBooking": "dd-MM-y",
     "today": "Hoy",
     "tomorrow": "Mañana",
