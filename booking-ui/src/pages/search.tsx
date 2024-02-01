@@ -607,11 +607,11 @@ class Search extends React.Component<Props, State> {
         </Form.Group>
       );
     }
-    let enterDatePicker = <DateTimePicker value={this.state.enter} onChange={(value: Date | null) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} showTimeSelect timeIntervals={60} format={this.props.t("datePickerFormat")} />;
+    let enterDatePicker = <DateTimePicker value={this.state.enter} onChange={(value: Date | null) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} hourPlaceholder={"00"} format={this.props.t("datePickerFormat")} />;
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enterDatePicker = <DatePicker value={this.state.enter} onChange={(value: Date | null | [Date | null, Date | null]) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormatDailyBasisBooking")} />;
     }
-    let leaveDatePicker = <DateTimePicker value={this.state.leave} onChange={(value: Date | null) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} showTimeSelect timeIntervals={60} format={this.props.t("datePickerFormat")} />;
+    let leaveDatePicker = <DateTimePicker value={this.state.leave} onChange={(value: Date | null) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} hourPlaceholder={"00"} format={this.props.t("datePickerFormat")} />;
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       leaveDatePicker = <DatePicker value={this.state.leave} onChange={(value: Date | null | [Date | null, Date | null]) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormatDailyBasisBooking")} />;
     }
