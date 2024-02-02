@@ -9,7 +9,7 @@ import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 import Loading from '../components/Loading';
-import { EnterOutline as EnterIcon, ExitOutline as ExitIcon, LocationOutline as LocationIcon, ChevronUpOutline as CollapseIcon, ChevronDownOutline as CollapseIcon2, SettingsOutline as SettingsIcon, MapOutline as MapIcon } from 'react-ionicons'
+import { EnterOutline as EnterIcon, ExitOutline as ExitIcon, LocationOutline as LocationIcon, ChevronUpOutline as CollapseIcon, ChevronDownOutline as CollapseIcon2, SettingsOutline as SettingsIcon, MapOutline as MapIcon, AlertCircleOutline as InfoIcon } from 'react-ionicons'
 import ErrorText from '../types/ErrorText';
 import { NextRouter } from 'next/router';
 import { WithTranslation, withTranslation } from 'next-i18next';
@@ -608,11 +608,11 @@ class Search extends React.Component<Props, State> {
         </Form.Group>
       );
     }
-    let enterDatePicker = <DateTimePicker value={this.state.enter} onChange={(value: Date | null) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} hourPlaceholder={"00"} format={this.props.t("datePickerFormat")} />;
+    let enterDatePicker = <DateTimePicker value={this.state.enter} onChange={(value: Date | null) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormat")} />;
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enterDatePicker = <DatePicker value={this.state.enter} onChange={(value: Date | null | [Date | null, Date | null]) => { if (value != null) this.setEnterDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormatDailyBasisBooking")} />;
     }
-    let leaveDatePicker = <DateTimePicker value={this.state.leave} onChange={(value: Date | null) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} hourPlaceholder={"00"} format={this.props.t("datePickerFormat")} />;
+    let leaveDatePicker = <DateTimePicker value={this.state.leave} onChange={(value: Date | null) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormat")} />;
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       leaveDatePicker = <DatePicker value={this.state.leave} onChange={(value: Date | null | [Date | null, Date | null]) => { if (value != null) this.setLeaveDate(value) }} clearIcon={null} required={true} format={this.props.t("datePickerFormatDailyBasisBooking")} />;
     }
@@ -698,11 +698,15 @@ class Search extends React.Component<Props, State> {
               <Col xs="2"><MapIcon title={this.props.t("map")} color={'#555'} height="20px" width="20px" /></Col>
               <Col xs="10">
                 <Form.Check type="switch" checked={!this.state.listView} onChange={() => this.toggleListView()} label={this.state.listView ? this.props.t("showList") : this.props.t("showMap")} />
+              </Col>             
+            </Form.Group>
+            <Form.Group as={Row} className="margin-top-10">
+              <Col xs="2"><InfoIcon title={this.props.t("map")} color={'#555'} height="20px" width="20px" /></Col>       
+              <Col xs="10">
+                <Form.Text className="text-muted">Lunes a Viernes de 8:00-16:00 y Sábados de 8:00-12:00</Form.Text>
               </Col>
             </Form.Group>
-          </Form>
-          <br />
-          <p>Lunes a Viernes de 8:00-16:00 y Sábados de 8:00-12:00</p>
+          </Form>          
         </div>
       </div>
     );
@@ -796,9 +800,15 @@ class Search extends React.Component<Props, State> {
           <p>{this.state.errorText}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => this.props.router.push("/bookings")}>
-            {this.props.t("myBookings").toString()}
+          <Button variant="primary" onClick={() => {
+              this.setState({ showSuccess: false });
+              this.refreshPage();
+            }}>
+              {this.props.t("ok").toString()}
           </Button>
+          {/*<Button variant="info" onClick={() => this.props.router.push("/bookings")}>
+            {this.props.t("myBookings").toString()}
+          </Button>*/}
         </Modal.Footer>
       </Modal>
     );
