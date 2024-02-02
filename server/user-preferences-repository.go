@@ -130,8 +130,8 @@ func (r *UserPreferencesRepository) InitDefaultSettingsForUser(userID string) er
 	_, err := GetDatabase().DB().Exec("INSERT INTO users_preferences (user_id, name, value) "+
 		"VALUES "+
 		"($1, '"+PreferenceEnterTime.Name+"', '"+strconv.Itoa(PreferenceEnterTimeNow)+"'), "+
-		"($1, '"+PreferenceWorkdayStart.Name+"', '9'), "+
-		"($1, '"+PreferenceWorkdayEnd.Name+"', '17'), "+
+		"($1, '"+PreferenceWorkdayStart.Name+"', '8'), "+
+		"($1, '"+PreferenceWorkdayEnd.Name+"', '9'), "+
 		"($1, '"+PreferenceWorkdays.Name+"', '1,2,3,4,5'), "+
 		"($1, '"+PreferenceLocation.Name+"', ''), "+
 		"($1, '"+PreferenceBookedColor.Name+"', '#ff453a'), "+

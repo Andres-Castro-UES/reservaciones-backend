@@ -521,6 +521,7 @@ class Search extends React.Component<Props, State> {
     let booking: Booking = new Booking();
     booking.enter = new Date(this.state.enter);
     booking.leave = new Date(this.state.leave);
+    booking.leave.setMinutes(booking.leave.getMinutes()-1);
     booking.space = this.state.selectedSpace;
     booking.save().then(() => {
       this.setState({

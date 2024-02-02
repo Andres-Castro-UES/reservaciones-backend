@@ -21,8 +21,8 @@ func GetProductVersion() string {
 }
 
 func main() {
-	log.Println("Starting...")
-	log.Println("Seatsurfing Backend Version " + GetProductVersion())
+	log.Println("Inicializando...")
+	log.Println("Reservaciones UES - Backend Version " + GetProductVersion())
 	db := GetDatabase()
 	a := GetApp()
 	a.InitializeDatabases()

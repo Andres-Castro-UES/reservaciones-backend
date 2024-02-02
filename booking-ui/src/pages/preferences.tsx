@@ -184,7 +184,7 @@ class Preferences extends React.Component<Props, State> {
         <div className="container-center">
           <Form className="container-center-inner" onSubmit={this.onSubmit}>
             {hint}
-            <Form.Group className="margin-top-15">
+            {/*<Form.Group className="margin-top-15">
               <Form.Label>{this.props.t("notice")}</Form.Label>
               <Form.Select value={this.state.enterTime} onChange={(e: any) => this.setState({ enterTime: e.target.value })}>
                 <option value="1">{this.props.t("earliestPossible")}</option>
@@ -213,7 +213,7 @@ class Preferences extends React.Component<Props, State> {
                   <Form.Check type="checkbox" key={"workday-" + day} id={"workday-" + day} label={this.props.t("workday-" + day)} checked={this.state.workdays[day]} onChange={(e: any) => this.onWorkdayCheck(day, e.target.checked)} />
                 ))}
               </div>
-            </Form.Group>
+                </Form.Group>*/}
             <Form.Group className="margin-top-15">
               <Form.Label>{this.props.t("bookingcolors")}</Form.Label>
               <Row>
