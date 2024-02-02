@@ -218,19 +218,19 @@ class Preferences extends React.Component<Props, State> {
               <Form.Label>{this.props.t("bookingcolors")}</Form.Label>
               <Row>
                 <Col>
-                  <p>Already booked</p>
+                  <p>Reservados por otra persona</p>
                   <Form.Control type="color" key={"booked"} id={"booked"} value={this.state.booked} onChange={(e: any) => this.setState({booked: e.target.value})} />
                 </Col>
                 <Col>
-                  <p>Not booked</p>
+                  <p>Disponibles</p>
                   <Form.Control type="color" key={"notBooked"} id={"notBooked"} value={this.state.notBooked} onChange={(e: any) => this.setState({ notBooked: e.target.value })} />
                 </Col>
                 <Col>
-                  <p>Self booked</p>
+                  <p>Reservados por mí</p>
                   <Form.Control type="color" key={"selfBooked"} id={"selfBooked"} value={this.state.selfBooked} onChange={(e: any) => this.setState({ selfBooked: e.target.value })} />
                 </Col>
                 <Col>
-                  <p>Buddy booked</p>
+                  <p>Reservado por compañero</p>
                   <Form.Control type="color" key={"buddyBooked"} id={"buddyBooked"} value={this.state.buddyBooked} onChange={(e: any) => this.setState({ buddyBooked: e.target.value })} />
                 </Col>
               </Row>
