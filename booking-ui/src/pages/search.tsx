@@ -800,11 +800,10 @@ class Search extends React.Component<Props, State> {
           <p>{this.state.errorText}</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => {
-              this.setState({ showSuccess: false });              
-            }}>
-              {this.props.t("ok").toString()}
+          <Button variant="primary" onClick={() => this.setState({ showError: false })}>
+            {this.props.t("ok")}
           </Button>
+          {gotoBooking}
           {/*<Button variant="info" onClick={() => this.props.router.push("/bookings")}>
             {this.props.t("myBookings").toString()}
           </Button>*/}
