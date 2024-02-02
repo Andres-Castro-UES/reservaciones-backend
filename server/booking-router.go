@@ -499,7 +499,7 @@ func (router *BookingRouter) isValidBookingDuration(m *BookingRequest, orgID str
 	}
 
 	// For non-daily-basis bookings, check exact duration
-	duration := math.Floor(m.Leave.Sub(m.Enter).Minutes()) / 60
+	duration := (math.Floor(m.Leave.Sub(m.Enter).Minutes()) -1 )/ 60
 	if duration < 0 || duration > float64(maxDurationHours) {
 		return false
 	}
