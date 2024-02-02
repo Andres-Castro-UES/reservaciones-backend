@@ -703,7 +703,7 @@ class Search extends React.Component<Props, State> {
             <Form.Group as={Row} className="margin-top-10">
               <Col xs="2"><InfoIcon title={this.props.t("map")} color={'#555'} height="20px" width="20px" /></Col>       
               <Col xs="10">
-                <Form.Text className="text-muted">Lunes a Viernes de 8:00-16:00 y Sábados de 8:00-12:00</Form.Text>
+                <Form.Text className="text-muted">lun. a vier. de 8:00-16:00 y sáb. de 8:00-12:00</Form.Text>
               </Col>
             </Form.Group>
           </Form>          
@@ -801,8 +801,7 @@ class Search extends React.Component<Props, State> {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={() => {
-              this.setState({ showSuccess: false });
-              this.refreshPage();
+              this.setState({ showSuccess: false });              
             }}>
               {this.props.t("ok").toString()}
           </Button>
