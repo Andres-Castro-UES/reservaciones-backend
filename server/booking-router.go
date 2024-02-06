@@ -167,7 +167,7 @@ func (router *BookingRouter) getOne(w http.ResponseWriter, r *http.Request) {
 }
 
 func (router *BookingRouter) getAll(w http.ResponseWriter, r *http.Request) {
-	nowTime := time.Now().UTC()
+	//nowTime := time.Now().UTC()
 	//newTime := nowTime.AddDate(0,0,-1)
 	//newTime := nowTime.Add(time.Hour * -8)
 	list, err := GetBookingRepository().GetAllByUser(GetRequestUserID(r), time.Now().UTC())
