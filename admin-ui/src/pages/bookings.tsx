@@ -28,7 +28,8 @@ class Bookings extends React.Component<Props, State> {
     this.data = [];
     let end = new Date();
     let start = new Date();
-    start.setDate(end.getDate() - 1);
+    //start.setDate(end.getDate() - 1);
+    end.setDate(end.getDate() + 7);
     this.state = {
       loading: true,
       start: Formatting.getISO8601(start),
