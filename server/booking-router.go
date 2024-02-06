@@ -170,7 +170,7 @@ func (router *BookingRouter) getAll(w http.ResponseWriter, r *http.Request) {
 	//nowTime := time.Now().UTC()
 	nowTime := time.Now()
 	//newTime := nowTime.AddDate(0,0,-1)
-	newTime := nowTime.Add(time.Day * -1)
+	newTime := nowTime.Add(time.Hour * -24)
 	//list, err := GetBookingRepository().GetAllByUser(GetRequestUserID(r), time.Now().UTC())
 	list, err := GetBookingRepository().GetAllByUser(GetRequestUserID(r), newTime)
 	if err != nil {
