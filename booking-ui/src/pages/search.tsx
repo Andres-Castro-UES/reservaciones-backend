@@ -758,6 +758,7 @@ class Search extends React.Component<Props, State> {
           <Modal.Title>{this.state.selectedSpace?.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <p>No disponible</p>
           {bookings.map(item => {
             return <span key={item.user.id}>{this.renderBookingNameRow(item)}</span>
           })}
@@ -804,9 +805,9 @@ class Search extends React.Component<Props, State> {
             {this.props.t("ok")}
           </Button>
           {gotoBooking}
-          {/*<Button variant="info" onClick={() => this.props.router.push("/bookings")}>
+          <Button variant="info" onClick={() => this.props.router.push("/bookings")}>
             {this.props.t("myBookings").toString()}
-          </Button>*/}
+          </Button>
         </Modal.Footer>
       </Modal>
     );
