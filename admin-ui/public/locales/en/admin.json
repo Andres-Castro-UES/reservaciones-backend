@@ -6,7 +6,7 @@
     "errorInvalidEmail": "Dirección de correo electrónico inválida.",
     "errorNoAuthProviders": "No hay proveedores de autenticación para este usuario.",
     "errorInvalidPassword": "Contraseña inválida.",
-    "password": "Contraeña",
+    "password": "Contraseña",
     "signin": "Iniciar Sesión",
     "back": "Retroceder",
     "signinAsAt": "Iniciar sesión como {{user}} en {{org}}:",
