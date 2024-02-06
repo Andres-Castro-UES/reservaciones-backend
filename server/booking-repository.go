@@ -129,7 +129,7 @@ func (r *BookingRepository) GetAllByUser(userID string, startTime time.Time) ([]
 		"INNER JOIN spaces ON bookings.space_id = spaces.id "+
 		"INNER JOIN locations ON spaces.location_id = locations.id "+
 		"INNER JOIN users ON bookings.user_id = users.id "+
-		"WHERE user_id = $1 AND leave_time >= $2 "+
+		"WHERE user_id = $1 AND enter_time >= $2 "+
 		"ORDER BY enter_time", userID, startTime)
 	if err != nil {
 		return nil, err
