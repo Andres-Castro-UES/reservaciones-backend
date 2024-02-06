@@ -21,7 +21,7 @@
     "errorPickArea": "Escoge un área",
     "errorEnterFuture": "La fecha de entrada debe ser en el futuro.",
     "errorLeaveAfterEnter": "La fecha de salida debe ser después de la fecha de entrada.",
-    "errorDaysAdvance": "Tu espacio no debe ser reservado con más de {{num}} días de anticipación.",
+    "errorDaysAdvance": "Tu espacio no puede ser reservado con más de {{num}} días de anticipación.",
     "errorBookingDuration": "El tiempo máximo de reserva es de {{num}} hora(s).",
     "errorTooManyConcurrent": "Capacidad límite alcanzada en el área seleccionada.",
     "errorUnknown": "Error desconocido, por favor intenta nuevemente más tarde.",

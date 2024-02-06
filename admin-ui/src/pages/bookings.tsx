@@ -99,6 +99,9 @@ class Bookings extends React.Component<Props, State> {
   }
 
   render() {
+    <FullLayout headline="Reservaciones activas">
+          <Loading />
+        </FullLayout>
     let searchButton = <Button className="btn-sm" variant="outline-secondary" type="submit" form="form"><IconSearch className="feather" /> {this.props.t("search")}</Button>;
     // eslint-disable-next-line
     let downloadButton = <a download="seatsurfing-bookings.xlsx" href="#" className="btn btn-sm btn-outline-secondary" onClick={this.exportTable}><IconDownload className="feather" /> {this.props.t("download")}</a>;
@@ -118,6 +121,12 @@ class Bookings extends React.Component<Props, State> {
         </Form.Group>
         <Form.Group as={Row}>
           <Form.Label column sm="2">{this.props.t("leave")}</Form.Label>
+          <Col sm="4">
+            <Form.Control type="date" value={this.state.end} onChange={(e: any) => this.setState({ end: e.target.value })} required={true} />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row}>
+          <Form.Label column sm="2">{this.props.t("area")}</Form.Label>
           <Col sm="4">
             <Form.Control type="date" value={this.state.end} onChange={(e: any) => this.setState({ end: e.target.value })} required={true} />
           </Col>

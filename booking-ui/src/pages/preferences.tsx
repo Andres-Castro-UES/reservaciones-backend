@@ -222,11 +222,11 @@ class Preferences extends React.Component<Props, State> {
                   <Form.Control type="color" key={"booked"} id={"booked"} value={this.state.booked} onChange={(e: any) => this.setState({booked: e.target.value})} />
                 </Col>
                 <Col>
-                  <p>Disponibles</p>
+                  <p>Disponibles para reserva</p>
                   <Form.Control type="color" key={"notBooked"} id={"notBooked"} value={this.state.notBooked} onChange={(e: any) => this.setState({ notBooked: e.target.value })} />
                 </Col>
                 <Col>
-                  <p>Reservados por mí</p>
+                  <p>Reservados para mi usuario</p>
                   <Form.Control type="color" key={"selfBooked"} id={"selfBooked"} value={this.state.selfBooked} onChange={(e: any) => this.setState({ selfBooked: e.target.value })} />
                 </Col>
                 <Col>
