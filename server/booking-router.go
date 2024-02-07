@@ -136,7 +136,7 @@ func (router *BookingRouter) getFiltered(w http.ResponseWriter, r *http.Request)
 		SendBadRequest(w)
 		return
 	}
-	list, err := GetBookingRepository().GetAllByOrg(user.OrganizationID, m.Start, m.End, m.Location)
+	list, err := GetBookingRepository().GetAllByOrg(user.OrganizationID, m.Start, m.End, m.LocationID)
 	if err != nil {
 		log.Println(err)
 		SendInternalServerError(w)
