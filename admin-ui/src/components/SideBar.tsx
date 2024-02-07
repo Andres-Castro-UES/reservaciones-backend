@@ -97,9 +97,9 @@ class SideBar extends React.Component<Props, State> {
                         <li className="nav-item">
                             <Nav.Link as={Link} eventKey="/bookings" href="/bookings"><IconBook className="feather" /> {this.props.t("bookings")}</Nav.Link>
                         </li>
-                        <li className="nav-item">
+                        {/*<li className="nav-item">
                             <Nav.Link as={Link} eventKey="/report/analysis" href="/report/analysis"><IconAnalysis className="feather" /> {this.props.t("analysis")}</Nav.Link>
-                        </li>
+                        </li>*/
                         {orgAdminItems}
                         {orgItem}
                         <li className="nav-item">
