@@ -21,8 +21,7 @@ interface Props extends WithTranslation {
 }
 
 class Bookings extends React.Component<Props, State> {
-  //data: Booking[];
-  data: any;
+  data: Booking[];  
   locations: Location[];  
   ExcellentExport: any;
   
