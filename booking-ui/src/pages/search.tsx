@@ -206,6 +206,7 @@ class Search extends React.Component<Props, State> {
     let leave = new Date(enter);
     
     leave.setHours(this.state.prefWorkdayEnd, 0, 0);
+    leave.setMinutes(leave.getMinutes()-1);
 
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enter.setHours(0, 0, 0, 0);
