@@ -70,10 +70,8 @@ class Bookings extends React.Component<Props, State> {
         <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />
-          {/*<IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
-          <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}*/}
-          <IconEnter className="feather" />&nbsp;{item.enter}<br />
-          <IconLeave className="feather" />&nbsp;{item.leave}
+          <IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
+          <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}          
         </p>
       </ListGroup.Item>
     );
