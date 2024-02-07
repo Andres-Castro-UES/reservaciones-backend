@@ -105,6 +105,20 @@ func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTim
 		"INNER JOIN users ON bookings.user_id = users.id "+
 		"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 "+
 		"ORDER BY enter_time", organizationID, startTime, endTime)
+
+		if err != nil {
+			return nil, err
+		}
+		defer rows.Close()
+		for rows.Next() {
+			e := &BookingDetails{}
+			err = rows.Scan(&e.ID, &e.UserID, &e.SpaceID, &e.Enter, &e.Leave, &e.Space.ID, &e.Space.LocationID, &e.Space.Name, &e.Space.Location.ID, &e.Space.Location.OrganizationID, &e.Space.Location.Name, &e.Space.Location.Description, &e.Space.Location.Timezone, &e.UserEmail)
+			if err != nil {
+				return nil, err
+			}
+			result = append(result, e)
+		}
+		return result, nil
 	}
 	if locationId != "0" {
 		rows, err := GetDatabase().DB().Query("SELECT bookings.id, bookings.user_id, bookings.space_id, bookings.enter_time, bookings.leave_time, "+
@@ -117,21 +131,22 @@ func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTim
 		"INNER JOIN users ON bookings.user_id = users.id "+
 		"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 AND locations.id = $4 "+
 		"ORDER BY enter_time", organizationID, startTime, endTime, locationId)
-	}
 
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	for rows.Next() {
-		e := &BookingDetails{}
-		err = rows.Scan(&e.ID, &e.UserID, &e.SpaceID, &e.Enter, &e.Leave, &e.Space.ID, &e.Space.LocationID, &e.Space.Name, &e.Space.Location.ID, &e.Space.Location.OrganizationID, &e.Space.Location.Name, &e.Space.Location.Description, &e.Space.Location.Timezone, &e.UserEmail)
 		if err != nil {
 			return nil, err
 		}
-		result = append(result, e)
+		defer rows.Close()
+		for rows.Next() {
+			e := &BookingDetails{}
+			err = rows.Scan(&e.ID, &e.UserID, &e.SpaceID, &e.Enter, &e.Leave, &e.Space.ID, &e.Space.LocationID, &e.Space.Name, &e.Space.Location.ID, &e.Space.Location.OrganizationID, &e.Space.Location.Name, &e.Space.Location.Description, &e.Space.Location.Timezone, &e.UserEmail)
+			if err != nil {
+				return nil, err
+			}
+			result = append(result, e)
+		}
+		return result, nil
 	}
-	return result, nil
+	return nil, nil
 }
 
 func (r *BookingRepository) GetAllByUser(userID string, startTime time.Time) ([]*BookingDetails, error) {
