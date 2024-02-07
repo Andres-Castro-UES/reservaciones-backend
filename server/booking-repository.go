@@ -106,7 +106,7 @@ func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTim
 		"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 "+
 		"ORDER BY enter_time", organizationID, startTime, endTime)
 	}
-	else{
+	if locationId != "0" {
 		rows, err := GetDatabase().DB().Query("SELECT bookings.id, bookings.user_id, bookings.space_id, bookings.enter_time, bookings.leave_time, "+
 		"spaces.id, spaces.location_id, spaces.name, "+
 		"locations.id, locations.organization_id, locations.name, locations.description, locations.tz, "+
