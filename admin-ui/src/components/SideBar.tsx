@@ -99,7 +99,7 @@ class SideBar extends React.Component<Props, State> {
                         </li>
                         {/*<li className="nav-item">
                             <Nav.Link as={Link} eventKey="/report/analysis" href="/report/analysis"><IconAnalysis className="feather" /> {this.props.t("analysis")}</Nav.Link>
-                        </li>*/
+                        </li>*/}
                         {orgAdminItems}
                         {orgItem}
                         <li className="nav-item">
