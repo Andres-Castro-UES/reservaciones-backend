@@ -91,6 +91,7 @@ export default class Booking extends Entity {
         };
         return Ajax.postData("/booking/filter/", payload).then(result => {
             let list: Booking[] = [];
+            console.log('realiza consulta');
             (result.json as []).forEach(item => {
                 let e: Booking = new Booking();
                 e.deserialize(item);

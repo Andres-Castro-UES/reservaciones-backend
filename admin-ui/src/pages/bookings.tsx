@@ -21,7 +21,8 @@ interface Props extends WithTranslation {
 }
 
 class Bookings extends React.Component<Props, State> {
-  data: Booking[];
+  //data: Booking[];
+  data: any;
   locations: Location[];  
   ExcellentExport: any;
   
@@ -56,6 +57,7 @@ class Bookings extends React.Component<Props, State> {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
     if (this.state.locationId == "00000000-0000-0000-0000-000000000000"){
+      console.log('entra en if');
       Booking.listFiltered(new Date(this.state.start), end, "00000000-0000-0000-0000-000000000000").then(list => {
         this.data = list;
         this.setState({ loading: false });
@@ -141,7 +143,7 @@ class Bookings extends React.Component<Props, State> {
           <Form.Label column sm="2">{this.props.t("area")}</Form.Label>
           <Col sm="4">
             <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
-              <option value="">({this.props.t("all")})</option>
+              <option value="00000000-0000-0000-0000-000000000000">({this.props.t("all")})</option>
               {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
             </Form.Select>
           </Col>
