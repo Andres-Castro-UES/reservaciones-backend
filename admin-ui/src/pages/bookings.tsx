@@ -13,7 +13,7 @@ interface State {
   loading: boolean
   start: string
   end: string
-  locationId: string
+  locationId: string  
 }
 
 interface Props extends WithTranslation {
@@ -21,9 +21,11 @@ interface Props extends WithTranslation {
 }
 
 class Bookings extends React.Component<Props, State> {
-  data: Booking[];
+  //data: Booking[];
   locations: Location[];
+  data: any;
   ExcellentExport: any;
+  
 
   constructor(props: any) {
     super(props);
@@ -37,7 +39,7 @@ class Bookings extends React.Component<Props, State> {
       loading: true,
       start: Formatting.getISO8601(start),
       end: Formatting.getISO8601(end),
-      locationId: ""
+      locationId: "0"
     };
   }
 
@@ -54,7 +56,7 @@ class Bookings extends React.Component<Props, State> {
   loadItems = () => {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
-    if (this.state.locationId == ""){
+    if (this.state.locationId == "0"){
       Booking.listFiltered(new Date(this.state.start), end, "0").then(list => {
         this.data = list;
         this.setState({ loading: false });
