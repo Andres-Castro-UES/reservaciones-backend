@@ -86,7 +86,7 @@ export default class Booking extends Entity {
         let payload = {
             start: start,
             end: end,
-            location: locationId
+            locationId: locationId
         };
         return Ajax.postData("/booking/filter/", payload).then(result => {
             let list: Booking[] = [];
