@@ -5,6 +5,7 @@ import Ajax from "../util/Ajax";
 import User from "./User";
 import Formatting from "../util/Formatting";
 
+//comentario
 export default class Booking extends Entity {
     enter: Date;
     leave: Date;

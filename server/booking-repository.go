@@ -58,6 +58,7 @@ func GetBookingRepository() *BookingRepository {
 
 func (r *BookingRepository) RunSchemaUpgrade(curVersion, targetVersion int) {
 	// No updates yet
+	//Comentario
 }
 
 func (r *BookingRepository) Create(e *Booking) error {
