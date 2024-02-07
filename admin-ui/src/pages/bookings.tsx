@@ -37,8 +37,8 @@ class Bookings extends React.Component<Props, State> {
     this.state = {
       loading: true,
       start: Formatting.getISO8601(start),
-      end: Formatting.getISO8601(end),
-      locationId: "0"
+      end: Formatting.getISO8601(end),      
+      locationId: "00000000-0000-0000-0000-000000000000"
     };
   }
 
@@ -55,8 +55,8 @@ class Bookings extends React.Component<Props, State> {
   loadItems = () => {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
-    if (this.state.locationId == "0"){
-      Booking.listFiltered(new Date(this.state.start), end, "0").then(list => {
+    if (this.state.locationId == "00000000-0000-0000-0000-000000000000"){
+      Booking.listFiltered(new Date(this.state.start), end, "00000000-0000-0000-0000-000000000000").then(list => {
         this.data = list;
         this.setState({ loading: false });
       });
