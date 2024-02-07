@@ -206,7 +206,7 @@ class Search extends React.Component<Props, State> {
     let leave = new Date(enter);
     
     leave.setHours(this.state.prefWorkdayEnd, 0, 0);
-    leave.setMinutes(leave.getMinutes()-1);
+    //leave.setMinutes(leave.getMinutes()-1);
 
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enter.setHours(0, 0, 0, 0);
@@ -260,7 +260,9 @@ class Search extends React.Component<Props, State> {
 
   loadSpaces = async (locationId: string) => {
     this.setState({ loading: true });
-    return Space.listAvailability(locationId, this.state.enter, this.state.leave).then(list => {
+    let newLeave = new Date(this.state.leave);
+    newLeave.setMinutes(newLeave.getMinutes() - 1);
+    return Space.listAvailability(locationId, this.state.enter, newLeave).then(list => {
       this.data = list;
     });
   }
