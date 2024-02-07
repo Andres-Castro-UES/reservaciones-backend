@@ -92,9 +92,10 @@ func (r *BookingRepository) GetOne(id string) (*BookingDetails, error) {
 	return e, nil
 }
 
-func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTime time.Time) ([]*BookingDetails, error) {
+func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTime time.Time, locationId string) ([]*BookingDetails, error) {
 	var result []*BookingDetails
-	rows, err := GetDatabase().DB().Query("SELECT bookings.id, bookings.user_id, bookings.space_id, bookings.enter_time, bookings.leave_time, "+
+	if (locationId == "0"){
+		rows, err := GetDatabase().DB().Query("SELECT bookings.id, bookings.user_id, bookings.space_id, bookings.enter_time, bookings.leave_time, "+
 		"spaces.id, spaces.location_id, spaces.name, "+
 		"locations.id, locations.organization_id, locations.name, locations.description, locations.tz, "+
 		"users.email "+
@@ -104,6 +105,20 @@ func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTim
 		"INNER JOIN users ON bookings.user_id = users.id "+
 		"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 "+
 		"ORDER BY enter_time", organizationID, startTime, endTime)
+	}
+	else{
+		rows, err := GetDatabase().DB().Query("SELECT bookings.id, bookings.user_id, bookings.space_id, bookings.enter_time, bookings.leave_time, "+
+		"spaces.id, spaces.location_id, spaces.name, "+
+		"locations.id, locations.organization_id, locations.name, locations.description, locations.tz, "+
+		"users.email "+
+		"FROM bookings "+
+		"INNER JOIN spaces ON bookings.space_id = spaces.id "+
+		"INNER JOIN locations ON spaces.location_id = locations.id "+
+		"INNER JOIN users ON bookings.user_id = users.id "+
+		"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 AND locations.id = $4 "+
+		"ORDER BY enter_time", organizationID, startTime, endTime, locationId)
+	}
+
 	if err != nil {
 		return nil, err
 	}

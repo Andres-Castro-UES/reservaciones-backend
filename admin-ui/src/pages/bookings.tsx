@@ -1,7 +1,7 @@
 import React from 'react';
 import FullLayout from '../components/FullLayout';
 import Loading from '../components/Loading';
-import { Ajax, Booking, Formatting } from 'flexspace-commons';
+import { Ajax, Booking, Formatting, Location } from 'flexspace-commons';
 import { Table, Form, Col, Row, Button } from 'react-bootstrap';
 import { Search as IconSearch, Download as IconDownload, X as IconX } from 'react-feather';
 import type * as CSS from 'csstype';
@@ -13,6 +13,7 @@ interface State {
   loading: boolean
   start: string
   end: string
+  locationId: string
 }
 
 interface Props extends WithTranslation {
@@ -21,11 +22,13 @@ interface Props extends WithTranslation {
 
 class Bookings extends React.Component<Props, State> {
   data: Booking[];
+  locations: Location[];
   ExcellentExport: any;
 
   constructor(props: any) {
     super(props);
     this.data = [];
+    this.locations = [];
     let end = new Date();
     let start = new Date();
     //start.setDate(end.getDate() - 1);
@@ -33,7 +36,8 @@ class Bookings extends React.Component<Props, State> {
     this.state = {
       loading: true,
       start: Formatting.getISO8601(start),
-      end: Formatting.getISO8601(end)
+      end: Formatting.getISO8601(end),
+      locationId: ""
     };
   }
 
@@ -42,6 +46,7 @@ class Bookings extends React.Component<Props, State> {
       this.props.router.push("/login");
       return;
     }
+    Location.list().then(locations => this.locations = locations);
     import('excellentexport').then(imp => this.ExcellentExport = imp.default);
     this.loadItems();
   }
@@ -49,10 +54,19 @@ class Bookings extends React.Component<Props, State> {
   loadItems = () => {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
-    Booking.listFiltered(new Date(this.state.start), end).then(list => {
-      this.data = list;
-      this.setState({ loading: false });
-    });
+    if (this.state.locationId == ""){
+      Booking.listFiltered(new Date(this.state.start), end, "0").then(list => {
+        this.data = list;
+        this.setState({ loading: false });
+      });
+    }
+    else{
+      Booking.listFiltered(new Date(this.state.start), end, this.state.locationId).then(list => {
+        this.data = list;
+        this.setState({ loading: false });
+      });
+    }
+    
   }
 
   cancelBooking = (booking: Booking) => {
@@ -99,9 +113,6 @@ class Bookings extends React.Component<Props, State> {
   }
 
   render() {
-    <FullLayout headline="Reservaciones activas">
-          <Loading />
-        </FullLayout>
     let searchButton = <Button className="btn-sm" variant="outline-secondary" type="submit" form="form"><IconSearch className="feather" /> {this.props.t("search")}</Button>;
     // eslint-disable-next-line
     let downloadButton = <a download="seatsurfing-bookings.xlsx" href="#" className="btn btn-sm btn-outline-secondary" onClick={this.exportTable}><IconDownload className="feather" /> {this.props.t("download")}</a>;
@@ -128,7 +139,10 @@ class Bookings extends React.Component<Props, State> {
         <Form.Group as={Row}>
           <Form.Label column sm="2">{this.props.t("area")}</Form.Label>
           <Col sm="4">
-            <Form.Control type="date" value={this.state.end} onChange={(e: any) => this.setState({ end: e.target.value })} required={true} />
+            <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
+              <option value="">({this.props.t("all")})</option>
+              {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
+            </Form.Select>
           </Col>
         </Form.Group>
       </Form>
