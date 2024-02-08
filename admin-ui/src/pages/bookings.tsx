@@ -171,7 +171,7 @@ class Bookings extends React.Component<Props, State> {
           </Form.Group>  
           <Form.Group as={Col}>
             <Form.Label >Usuario</Form.Label>
-            <Form.Control type="text" placeholder="carnet" />
+            <Form.Control type="text" placeholder="sin @ues.edu.sv" />
           </Form.Group>  
         </Form.Group>          
       </Form>
