@@ -124,7 +124,7 @@ class Bookings extends React.Component<Props, State> {
         {searchButton}
       </>
     );
-    let form = (
+    {/*let form = (
       <Form onSubmit={this.onFilterSubmit} id="form">
         <Form.Group as={Row}>
           <Form.Label column sm="2">{this.props.t("enter")}</Form.Label>
@@ -147,6 +147,33 @@ class Bookings extends React.Component<Props, State> {
             </Form.Select>
           </Col>
         </Form.Group>
+      </Form>
+    );*/}
+    let form = (
+      <Form onSubmit={this.onFilterSubmit} id="form">
+        <Form.Group as={Row}>
+          <Form.Group as={Col}>
+            <Form.Label >{this.props.t("enter")}</Form.Label>
+            <Form.Control type="date" value={this.state.start} onChange={(e: any) => this.setState({ start: e.target.value })} required={true} />            
+          </Form.Group>
+          <Form.Group as={Col}>
+            <Form.Label >{this.props.t("leave")}</Form.Label>            
+            <Form.Control type="date" value={this.state.end} onChange={(e: any) => this.setState({ end: e.target.value })} required={true} />            
+          </Form.Group>            
+        </Form.Group>  
+        <Form.Group as={Row}>
+          <Form.Group as={Col}>
+            <Form.Label >{this.props.t("area")}</Form.Label>
+            <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
+              <option value="00000000-0000-0000-0000-000000000000">({this.props.t("all")})</option>
+              {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
+            </Form.Select>
+          </Form.Group>  
+          <Form.Group as={Col}>
+            <Form.Label >Usuario}</Form.Label>
+            <Form.Control type="text" placeholder="carnet" />
+          </Form.Group>  
+        </Form.Group>          
       </Form>
     );
 

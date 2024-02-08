@@ -199,7 +199,8 @@ class Search extends React.Component<Props, State> {
         }
       }
       enter.setDate(enter.getDate() + add);
-      enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+      //enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+      enter.setHours(enter.getHours()+1,0,0,0);
       
     }
 
