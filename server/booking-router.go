@@ -41,6 +41,7 @@ type GetBookingFilterRequest struct {
 	Start      time.Time `json:"start" validate:"required"`
 	End        time.Time `json:"end" validate:"required"`
 	LocationID string    `json:"locationId"`
+	Email      string    `json:"email"`
 }
 
 type GetPresenceReportResult struct {
@@ -136,7 +137,7 @@ func (router *BookingRouter) getFiltered(w http.ResponseWriter, r *http.Request)
 		SendBadRequest(w)
 		return
 	}
-	list, err := GetBookingRepository().GetAllByOrg(user.OrganizationID, m.Start, m.End, m.LocationID)
+	list, err := GetBookingRepository().GetAllByOrg(user.OrganizationID, m.Start, m.End, m.LocationID, m.Email)
 	if err != nil {
 		log.Println(err)
 		SendInternalServerError(w)
@@ -167,7 +168,7 @@ func (router *BookingRouter) getOne(w http.ResponseWriter, r *http.Request) {
 }
 
 func (router *BookingRouter) getAll(w http.ResponseWriter, r *http.Request) {
-	
+
 	nowTime := time.Now().UTC()
 	modTime := nowTime.Truncate(time.Hour)
 	newTime := modTime.Add(time.Hour * -6)
@@ -504,7 +505,7 @@ func (router *BookingRouter) isValidBookingDuration(m *BookingRequest, orgID str
 	}
 
 	// For non-daily-basis bookings, check exact duration
-	duration := (math.Floor(m.Leave.Sub(m.Enter).Minutes()) -1 )/ 60
+	duration := (math.Floor(m.Leave.Sub(m.Enter).Minutes()) - 1) / 60
 	if duration < 0 || duration > float64(maxDurationHours) {
 		return false
 	}
@@ -539,7 +540,7 @@ func (router *BookingRouter) isValidMaxUpcomingBookings(orgID string, userID str
 	modTime := nowTime.Truncate(time.Hour)
 	newTime := modTime.Add(time.Hour * -6)
 	//curUpcoming, _ := GetBookingRepository().GetAllByUser(userID, time.Now().UTC())
-	curUpcoming, _ := GetBookingRepository().GetAllByUser(userID,newTime)
+	curUpcoming, _ := GetBookingRepository().GetAllByUser(userID, newTime)
 	return len(curUpcoming) < maxUpcoming
 }
 

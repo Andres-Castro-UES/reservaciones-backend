@@ -13,7 +13,8 @@ interface State {
   loading: boolean
   start: string
   end: string
-  locationId: string  
+  locationId: string
+  email: string
 }
 
 interface Props extends WithTranslation {
@@ -38,7 +39,8 @@ class Bookings extends React.Component<Props, State> {
       loading: true,
       start: Formatting.getISO8601(start),
       end: Formatting.getISO8601(end),      
-      locationId: "00000000-0000-0000-0000-000000000000"
+      locationId: "00000000-0000-0000-0000-000000000000",
+      email: ""
     };
   }
 
@@ -56,17 +58,36 @@ class Bookings extends React.Component<Props, State> {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
     if (this.state.locationId == "00000000-0000-0000-0000-000000000000"){
-      console.log('entra en if');
-      Booking.listFiltered(new Date(this.state.start), end, "00000000-0000-0000-0000-000000000000").then(list => {
-        this.data = list;
-        this.setState({ loading: false });
-      });
+      if (this.state.email == "")
+      {
+        Booking.listFiltered(new Date(this.state.start), end, "00000000-0000-0000-0000-000000000000","0").then(list => {
+          this.data = list;
+          this.setState({ loading: false });
+        });
+      }
+      else{
+        Booking.listFiltered(new Date(this.state.start), end, "00000000-0000-0000-0000-000000000000",this.state.email).then(list => {
+          this.data = list;
+          this.setState({ loading: false });
+        });
+      }
+      
     }
     else{
-      Booking.listFiltered(new Date(this.state.start), end, this.state.locationId).then(list => {
-        this.data = list;
-        this.setState({ loading: false });
-      });
+      if (this.state.email==""){
+        Booking.listFiltered(new Date(this.state.start), end, this.state.locationId,"0").then(list => {
+          this.data = list;
+          this.setState({ loading: false });
+        });  
+      }
+      else{
+        Booking.listFiltered(new Date(this.state.start), end, this.state.locationId,this.state.email).then(list => {
+          this.data = list;
+          this.setState({ loading: false });
+        });
+      }
+
+      
     }
     
   }
