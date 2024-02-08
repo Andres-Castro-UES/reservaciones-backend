@@ -535,7 +535,7 @@ class Search extends React.Component<Props, State> {
     let booking: Booking = new Booking();
     booking.enter = new Date(this.state.enter);
     booking.leave = new Date(this.state.leave);
-    if(booking.leave.getHour() > 16){
+    if(booking.leave.getHours() > 16){
       this.setState({
         loading: false,
         showError: true,
