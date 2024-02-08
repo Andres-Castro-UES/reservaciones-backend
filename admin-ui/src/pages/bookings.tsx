@@ -170,7 +170,7 @@ class Bookings extends React.Component<Props, State> {
             </Form.Select>
           </Form.Group>  
           <Form.Group as={Col}>
-            <Form.Label >Usuario}</Form.Label>
+            <Form.Label >Usuario</Form.Label>
             <Form.Control type="text" placeholder="carnet" />
           </Form.Group>  
         </Form.Group>          
