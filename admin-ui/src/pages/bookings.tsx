@@ -146,31 +146,6 @@ class Bookings extends React.Component<Props, State> {
         {searchButton}
       </>
     );
-    {/*let form = (
-      <Form onSubmit={this.onFilterSubmit} id="form">
-        <Form.Group as={Row}>
-          <Form.Label column sm="2">{this.props.t("enter")}</Form.Label>
-          <Col sm="4">
-            <Form.Control type="date" value={this.state.start} onChange={(e: any) => this.setState({ start: e.target.value })} required={true} />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row}>
-          <Form.Label column sm="2">{this.props.t("leave")}</Form.Label>
-          <Col sm="4">
-            <Form.Control type="date" value={this.state.end} onChange={(e: any) => this.setState({ end: e.target.value })} required={true} />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row}>
-          <Form.Label column sm="2">{this.props.t("area")}</Form.Label>
-          <Col sm="4">
-            <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
-              <option value="00000000-0000-0000-0000-000000000000">({this.props.t("all")})</option>
-              {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
-            </Form.Select>
-          </Col>
-        </Form.Group>
-      </Form>
-    );*/}
     let form = (
       <Form onSubmit={this.onFilterSubmit} id="form">
         <Form.Group as={Row}>
@@ -186,14 +161,14 @@ class Bookings extends React.Component<Props, State> {
         <Form.Group as={Row}>
           <Form.Group as={Col}>
             <Form.Label >{this.props.t("area")}</Form.Label>
-            <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
+            <Form.Select value={this.state.locationId} onChange={(e: handleInputChange) => this.setState({ locationId: e.target.value })}>
               <option value="00000000-0000-0000-0000-000000000000">({this.props.t("all")})</option>
               {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
             </Form.Select>
           </Form.Group>  
           <Form.Group as={Col}>
             <Form.Label >Usuario</Form.Label>
-            <Form.Control value={this.state.email} onChange={(e: any) => this.setState({ locationId: e.target.value })} type="text" placeholder="sin @ues.edu.sv" />
+            <Form.Control value={this.state.email} onChange={(e: any) => this.setState({ email: e.target.value })} type="text" placeholder="sin @ues.edu.sv" />
           </Form.Group>  
         </Form.Group>          
       </Form>
