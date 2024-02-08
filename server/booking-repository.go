@@ -184,7 +184,7 @@ func (r *BookingRepository) GetAllByOrg(organizationID string, startTime, endTim
 			"INNER JOIN spaces ON bookings.space_id = spaces.id "+
 			"INNER JOIN locations ON spaces.location_id = locations.id "+
 			"INNER JOIN users ON bookings.user_id = users.id "+
-			"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 AND locations.id = $4 AND users.mail LIKE '%"+email+"%' "+
+			"WHERE locations.organization_id = $1 AND leave_time >= $2 AND enter_time <= $3 AND locations.id = $4 AND users.email LIKE '%"+email+"%' "+
 			"ORDER BY enter_time", organizationID, startTime, endTime, locationId)
 
 		if err != nil {
