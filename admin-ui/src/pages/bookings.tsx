@@ -57,6 +57,7 @@ class Bookings extends React.Component<Props, State> {
   loadItems = () => {
     let end = new Date(this.state.end);
     end.setUTCHours(23, 59, 59);
+    console.log(this.state.email);
     if (this.state.locationId == "00000000-0000-0000-0000-000000000000"){
       if (this.state.email == "")
       {
@@ -192,7 +193,7 @@ class Bookings extends React.Component<Props, State> {
           </Form.Group>  
           <Form.Group as={Col}>
             <Form.Label >Usuario</Form.Label>
-            <Form.Control type="text" placeholder="sin @ues.edu.sv" />
+            <Form.Control value={this.state.email} onChange={(e: any) => this.setState({ locationId: e.target.value })} type="text" placeholder="sin @ues.edu.sv" />
           </Form.Group>  
         </Form.Group>          
       </Form>
