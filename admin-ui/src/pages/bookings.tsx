@@ -161,7 +161,7 @@ class Bookings extends React.Component<Props, State> {
         <Form.Group as={Row}>
           <Form.Group as={Col}>
             <Form.Label >{this.props.t("area")}</Form.Label>
-            <Form.Select value={this.state.locationId} onChange={(e: handleInputChange) => this.setState({ locationId: e.target.value })}>
+            <Form.Select value={this.state.locationId} onChange={(e: any) => this.setState({ locationId: e.target.value })}>
               <option value="00000000-0000-0000-0000-000000000000">({this.props.t("all")})</option>
               {this.locations.map(location => <option key={location.id} value={location.id}>{location.name}</option>)}
             </Form.Select>
