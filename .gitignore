@@ -4,7 +4,7 @@ docker-readme-modified.md
 .vscode/
 
 docker-compose.yml
-db.yml
+server-db.yml
 ues.edu.sv*
 nginx-server.conf
 gd_bundle*

@@ -170,53 +170,56 @@ class Search extends React.Component<Props, State> {
 
   initDates = () => {
     let enter = new Date();
+    let leave = new Date(enter);    
     if (this.state.prefEnterTime === Search.PreferenceEnterTimeNow) {
-      enter.setHours(enter.getHours() + 1, 0, 0);
+      //enter.setHours(enter.getHours() + 1, 0, 0);
+      //this.state.prefWorkdayStart = 8
+      // Sunday - Saturday : 0 - 6
       if (enter.getHours() < this.state.prefWorkdayStart) {
-        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+        if(enter.getDay() != 0){
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);          
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+        }
+        else{
+          enter.setDate(enter.getDate() + 1);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+        }        
       }
-      if (enter.getHours() > this.state.prefWorkdayStart){
-        enter.setHours(enter.getHours() + 1,0,0,0);
-      }
-      if (enter.getHours() >= this.state.prefWorkdayEnd-1) {
-        enter.setDate(enter.getDate() + 1);
-        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-      }
-    } 
-    //Esto al final no tendrá incidencia
-    else if (this.state.prefEnterTime === Search.PreferenceEnterTimeNextDay) {
-      enter.setDate(enter.getDate() + 1);
-      enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-    } 
-    else if (this.state.prefEnterTime === Search.PreferenceEnterTimeNextWorkday) {
-      enter.setDate(enter.getDate() + 1);
-      let add = 0;
-      let nextDayFound = false;
-      let lookFor = enter.getDay();
-      while (!nextDayFound) {
-        if (this.state.prefWorkdays.includes(lookFor) || add > 7) {
-          nextDayFound = true;
-        } else {
-          add++;
-          lookFor++;
-          if (lookFor > 6) {
-            lookFor = 0;
+      if (enter.getHours() > this.state.prefWorkdayStart && (enter.getHours()+1+RuntimeConfig.INFOS.maxBookingDurationHours)<=this.state.prefWorkdayEnd){
+
+        if (enter.getDay() == 0){
+          enter.setDate(enter.getDate() + 1);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+        }
+        else{
+          if(enter.getHours() >= 11 && enter.getDay() == 6){
+            enter.setDate(enter.getDate() + 2);
+            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
           }
+          else{
+            enter.setHours(enter.getHours() + 1,0,0,0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+          }
+        }        
+      }
+      //this.state.prefWorkdayEnd = 16
+      if (enter.getHours() >= this.state.prefWorkdayEnd-1) {
+        if(enter.getDay() == 6){
+          enter.setDate(enter.getDate() + 2);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+        }
+        else{
+          enter.setDate(enter.getDate() + 1);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
         }
       }
-      
-      //enter.setDate(enter.getDate() + add);
-      //enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-      //enter.setHours(enter.getHours()+1,0,0,0);
-
-      //////
-    }
-
-    let leave = new Date(enter);
-    
-    //leave.setHours(this.state.prefWorkdayEnd, 0, 0);
-    leave.setHours(leave.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);    
-
+    } 
+   
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enter.setHours(0, 0, 0, 0);
       leave.setHours(23, 59, 59, 0);
@@ -534,13 +537,14 @@ class Search extends React.Component<Props, State> {
     });
     let booking: Booking = new Booking();
     booking.enter = new Date(this.state.enter);
-    booking.leave = new Date(this.state.leave);
-    if(booking.leave.getHours() > 16){
+    booking.leave = new Date(this.state.leave);    
+    if(booking.leave.getHours() > 16 || (booking.leave.getHours() > 12 && booking.leave.getDay() == 6)|| booking.leave.getDay() == 0 || booking.enter.getHours() < 8 ){
       this.setState({
         loading: false,
         showError: true,
-        
+        errorText: 'Error en horario.'
       });
+      return;
     }
     booking.leave.setMinutes(booking.leave.getMinutes()-1);
     booking.space = this.state.selectedSpace;
