@@ -62,6 +62,7 @@ class Bookings extends React.Component<Props, State> {
 
   renderItem = (item: Booking) => {
     let formatter = Formatting.getFormatter();
+    console.log(item.enter,item.leave)
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       formatter = Formatting.getFormatterNoTime();
     }
