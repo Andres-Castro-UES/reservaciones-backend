@@ -746,12 +746,7 @@ class Search extends React.Component<Props, State> {
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       formatter = Formatting.getFormatterNoTime();
     }    
-    const options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
+    
     let confirmModal = (
       <Modal show={this.state.showConfirm} onHide={() => this.setState({ showConfirm: false })}>
         <Modal.Header closeButton>
@@ -762,8 +757,8 @@ class Search extends React.Component<Props, State> {
           <p>{this.props.t("area")}: {this.getLocationName()}</p>
           {/*<p>{this.props.t("enter")}: {formatter.format(Formatting.convertToFakeUTCDate(new Date(this.state.enter)))}</p>
           <p>{this.props.t("leave")}: {formatter.format(Formatting.convertToFakeUTCDate(new Date(this.state.leave)))}</p>*/}
-          <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-ES',options)}</p>
-          <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-ES',options)}</p>
+          <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-ES')}</p>
+          <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-ES')}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => this.setState({ showConfirm: false })}>
