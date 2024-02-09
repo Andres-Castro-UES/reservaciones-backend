@@ -185,11 +185,11 @@ class Search extends React.Component<Props, State> {
           enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
         }        
-        console.log('se queda dentro de if enter.getHours() < this.state.prefWorkdayStart ');
       }
       else{
-        if (enter.getHours() > this.state.prefWorkdayStart && (enter.getHours()+1)<this.state.prefWorkdayEnd){
-          if (enter.getDay() == 0){
+        if (enter.getHours() > this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-1){
+
+          if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 >= this.state.prefWorkdayEnd){
             enter.setDate(enter.getDate() + 1);
             enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
             leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
@@ -205,32 +205,26 @@ class Search extends React.Component<Props, State> {
               leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
             }
           }
-          console.log('se queda dentro de if enter.getHours() > this.state.prefWorkdayStart && (enter.getHours()+1)<this.state.prefWorkdayEnd ');    
+          
         }
         else{          
           //this.state.prefWorkdayEnd = 16
-          if (enter.getHours() >= this.state.prefWorkdayEnd-1) {
-            if(enter.getDay() == 6){
-              enter.setDate(enter.getDate() + 2);
-              enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-              leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-            }
-            else{
-              enter.setDate(enter.getDate() + 1);
-              enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-              leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-            }
-            console.log('se queda dentro de if enter.getHours() >= this.state.prefWorkdayEnd-1 ');    
+          if(enter.getDay() == 6){
+            enter.setDate(enter.getDate() + 2);
+            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
           }
           else{
-            console.log('no entra a nada');
-          }
+            enter.setDate(enter.getDate() + 1);
+            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+          }   
         }
-        
-      }      
-    
+      }          
     } 
-   
+
+    console.log(enter,leave);
+
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       enter.setHours(0, 0, 0, 0);
       leave.setHours(23, 59, 59, 0);
