@@ -1,7 +1,7 @@
 import { TFunction } from "i18next";
 
 export default class Formatting {
-    static Language: string = "en";
+    static Language: string = "es";
     static t: TFunction;
     
     static tbool(s: string) {
