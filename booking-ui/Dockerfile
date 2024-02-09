@@ -27,7 +27,7 @@ RUN npm run build
 RUN sed -i "s/const hostname = /const hostname = process.env.LISTEN_ADDR || /g" /app/build/standalone/server.js
 
 RUN echo "America/El_Salvador" > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
+
 
 FROM gcr.io/distroless/nodejs20-debian12
 ENV NODE_ENV=production
