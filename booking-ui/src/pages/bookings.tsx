@@ -62,7 +62,6 @@ class Bookings extends React.Component<Props, State> {
 
   renderItem = (item: Booking) => {
     let formatter = Formatting.getFormatter();
-    console.log(item.enter,item.leave)
     if (RuntimeConfig.INFOS.dailyBasisBooking) {
       formatter = Formatting.getFormatterNoTime();
     }
@@ -71,10 +70,8 @@ class Bookings extends React.Component<Props, State> {
         <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />          
-          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV',{timeZone: 'Europe/London',hour: '2-digit',minute: '2-digit'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV',{timeZone: 'Europe/London',hour: '2-digit',minute: '2-digit'})}
-          {/*<IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV',{hour: '2-digit',minute: '2-digit'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV',{hour: '2-digit',minute: '2-digit'})}*/}
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV')}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV')}
         </p>
       </ListGroup.Item>
     );
@@ -115,7 +112,8 @@ class Bookings extends React.Component<Props, State> {
             <Modal.Title>{this.props.t("cancelBooking")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>
+            {/*<p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>*/}
+            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'}) - this.state.selectedItem?.enter.toLocaleTimeString('es-SV') })}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.setState({ selectedItem: null })}>
