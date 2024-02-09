@@ -7,7 +7,8 @@ ADD go.sum .
 WORKDIR /go/src/app/server
 RUN go get -d -v ./...
 RUN CGO_ENABLED=0 go build -ldflags="-w -s" -o main .
-RUN echo "America/El_Salvador" > /etc/timezone
+
+#RUN echo "America/El_Salvador" > /etc/timezone
 
 FROM gcr.io/distroless/static-debian12
 COPY --from=server-builder /go/src/app/server/main /app/
