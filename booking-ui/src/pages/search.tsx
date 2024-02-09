@@ -171,57 +171,58 @@ class Search extends React.Component<Props, State> {
   initDates = () => {
     let enter = new Date();
     let leave = new Date(enter);    
-    if (this.state.prefEnterTime === Search.PreferenceEnterTimeNow) {
-      //enter.setHours(enter.getHours() + 1, 0, 0);
-      //this.state.prefWorkdayStart = 8
-      // Sunday - Saturday : 0 - 6
-      if (enter.getHours() < this.state.prefWorkdayStart) {
-        if(enter.getDay() != 0){
-          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);          
+    
+    //enter.setHours(enter.getHours() + 1, 0, 0);
+    //this.state.prefWorkdayStart = 8 
+    // Sunday - Saturday : 0 - 6
+    if (enter.getHours() < this.state.prefWorkdayStart) {
+      console.log('entra en  if (enter.getHours() < this.state.prefWorkdayStart)');
+      if(enter.getDay() != 0){
+        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);          
+        leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+      }
+      else{
+        enter.setDate(enter.getDate() + 1);
+        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+        leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+      }        
+    }
+    else{
+      if (enter.getHours() > this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-1){
+        console.log('entra en if (enter.getHours() > this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-1)');
+        if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 >= this.state.prefWorkdayEnd){
+          enter.setDate(enter.getDate() + 1);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+        }
+        else{
+          if(enter.getHours() >= 11 && enter.getDay() == 6){
+            enter.setDate(enter.getDate() + 2);
+            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+          }
+          else{
+            enter.setHours(enter.getHours() + 1,0,0,0);
+            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
+          }
+        }
+        
+      }
+      else{          
+        //this.state.prefWorkdayEnd = 16
+        console.log('entra en else (enter.getHours() < this.state.prefWorkdayStart)');
+        if(enter.getDay() == 6){
+          enter.setDate(enter.getDate() + 2);
+          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
         }
         else{
           enter.setDate(enter.getDate() + 1);
           enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-        }        
+        }   
       }
-      else{
-        if (enter.getHours() > this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-1){
-
-          if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 >= this.state.prefWorkdayEnd){
-            enter.setDate(enter.getDate() + 1);
-            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-          }
-          else{
-            if(enter.getHours() >= 11 && enter.getDay() == 6){
-              enter.setDate(enter.getDate() + 2);
-              enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-              leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-            }
-            else{
-              enter.setHours(enter.getHours() + 1,0,0,0);
-              leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-            }
-          }
-          
-        }
-        else{          
-          //this.state.prefWorkdayEnd = 16
-          if(enter.getDay() == 6){
-            enter.setDate(enter.getDate() + 2);
-            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-          }
-          else{
-            enter.setDate(enter.getDate() + 1);
-            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
-          }   
-        }
-      }          
-    } 
+    }  
 
     console.log(enter,leave);
 
