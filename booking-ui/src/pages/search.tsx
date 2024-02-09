@@ -185,6 +185,7 @@ class Search extends React.Component<Props, State> {
           enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
         }        
+        console.log('se queda dentro de if enter.getHours() < this.state.prefWorkdayStart ');
       }
       else{
         if (enter.getHours() > this.state.prefWorkdayStart && (enter.getHours()+1)<this.state.prefWorkdayEnd){
@@ -203,7 +204,8 @@ class Search extends React.Component<Props, State> {
               enter.setHours(enter.getHours() + 1,0,0,0);
               leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
             }
-          }        
+          }
+          console.log('se queda dentro de if enter.getHours() > this.state.prefWorkdayStart && (enter.getHours()+1)<this.state.prefWorkdayEnd ');    
         }
         else{          
           //this.state.prefWorkdayEnd = 16
@@ -218,6 +220,10 @@ class Search extends React.Component<Props, State> {
               enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
               leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours);
             }
+            console.log('se queda dentro de if enter.getHours() >= this.state.prefWorkdayEnd-1 ');    
+          }
+          else{
+            console.log('no entra a nada');
           }
         }
         
