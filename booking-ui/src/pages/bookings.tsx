@@ -69,9 +69,9 @@ class Bookings extends React.Component<Props, State> {
       <ListGroup.Item key={item.id} action={true} onClick={(e) => { e.preventDefault(); this.onItemPress(item); }}>
         <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
         <p>
-          <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />
-          <IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
-          <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}          
+          <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />          
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-ES')}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-ES')}
         </p>
       </ListGroup.Item>
     );
