@@ -70,8 +70,8 @@ class Bookings extends React.Component<Props, State> {
         <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />          
-          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-ES')}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-ES')}
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV')}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV')}
         </p>
       </ListGroup.Item>
     );
@@ -112,7 +112,8 @@ class Bookings extends React.Component<Props, State> {
             <Modal.Title>{this.props.t("cancelBooking")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>
+            {/*<p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>*/}
+            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'}) - this.state.selectedItem?.enter.toLocaleTimeString('es-SV'), interpolation: { escapeValue: false } })}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.setState({ selectedItem: null })}>

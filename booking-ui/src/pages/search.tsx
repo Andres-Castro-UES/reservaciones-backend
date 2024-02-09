@@ -755,8 +755,8 @@ class Search extends React.Component<Props, State> {
         <Modal.Body>
           <p>{this.props.t("space")}: {this.state.selectedSpace?.name}</p>
           <p>{this.props.t("area")}: {this.getLocationName()}</p>        
-          <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.enter.toLocaleTimeString('es-ES')}</p>
-          <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-ES',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.leave.toLocaleTimeString('es-ES')}</p>
+          <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.enter.toLocaleTimeString('es-SV')}</p>
+          <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.leave.toLocaleTimeString('es-SV')}</p>
           
         </Modal.Body>
         <Modal.Footer>
