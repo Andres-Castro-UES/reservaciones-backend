@@ -112,8 +112,7 @@ class Bookings extends React.Component<Props, State> {
             <Modal.Title>{this.props.t("cancelBooking")}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {/*<p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>*/}
-            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'}) - this.state.selectedItem?.enter.toLocaleTimeString('es-SV') })}</p>
+            <p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.setState({ selectedItem: null })}>
