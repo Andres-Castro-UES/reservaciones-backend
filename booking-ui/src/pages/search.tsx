@@ -762,7 +762,6 @@ class Search extends React.Component<Props, State> {
           <p>{this.props.t("area")}: {this.getLocationName()}</p>        
           <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.enter.toLocaleTimeString('es-SV')}</p>
           <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {this.state.leave.toLocaleTimeString('es-SV')}</p>
-          
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => this.setState({ showConfirm: false })}>
