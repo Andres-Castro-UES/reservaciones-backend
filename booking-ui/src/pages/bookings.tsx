@@ -71,8 +71,10 @@ class Bookings extends React.Component<Props, State> {
         <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name}, {item.space.name}<br />          
-          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV',{timeZone: 'America/El_Salvador',hour: '2-digit',minute: '2-digit'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV',{timeZone: 'America/El_Salvador',hour: '2-digit',minute: '2-digit'})}
+          {/*<IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV',{timeZone: 'America/El_Salvador',hour: '2-digit',minute: '2-digit'})}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV',{timeZone: 'America/El_Salvador',hour: '2-digit',minute: '2-digit'})}*/}
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV',{hour: '2-digit',minute: '2-digit'})}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV',{hour: '2-digit',minute: '2-digit'})}
         </p>
       </ListGroup.Item>
     );
