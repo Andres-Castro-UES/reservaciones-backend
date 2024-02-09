@@ -10,7 +10,7 @@ export default class Formatting {
 
     static getFormatter(local?: boolean): Intl.DateTimeFormat {
         let formatter = new Intl.DateTimeFormat(Formatting.Language, {
-            timeZone: local ? undefined : 'UTC',
+            timeZone: local ? undefined : 'America/El_Salvador',
             weekday: 'long',
             year: 'numeric',
             month: '2-digit',
@@ -24,7 +24,7 @@ export default class Formatting {
 
     static getFormatterNoTime(local?: boolean): Intl.DateTimeFormat {
         let formatter = new Intl.DateTimeFormat(Formatting.Language, {
-            timeZone: local ? undefined : 'UTC',
+            timeZone: local ? undefined : 'America/El_Salvador',
             weekday: 'long',
             year: 'numeric',
             month: '2-digit',
@@ -35,7 +35,7 @@ export default class Formatting {
 
     static getFormatterShort(local?: boolean): Intl.DateTimeFormat {
         let formatter = new Intl.DateTimeFormat(Formatting.Language, {
-            timeZone: local ? undefined : 'UTC',
+            timeZone: local ? undefined : 'America/El_Salvador',
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
@@ -48,7 +48,7 @@ export default class Formatting {
 
     static getFormatterDate(local?: boolean): Intl.DateTimeFormat {
         let formatter = new Intl.DateTimeFormat(Formatting.Language, {
-            timeZone: local ? undefined : 'UTC',
+            timeZone: local ? undefined : 'America/El_Salvador',
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
