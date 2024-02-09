@@ -759,8 +759,8 @@ class Search extends React.Component<Props, State> {
           <p>{this.props.t("leave")}: {formatter.format(Formatting.convertToFakeUTCDate(new Date(this.state.leave)))}</p>*/}
           <p>{this.props.t("enter")}: {this.state.enter.toLocaleDateString('es-ES')}-{this.state.enter.toLocaleTimeString('es-ES')}</p>
           <p>{this.props.t("leave")}: {this.state.leave.toLocaleDateString('es-ES')}-{this.state.leave.toLocaleTimeString('es-ES')}</p>
-          <p>{this.props.t("enter")}: {this.state.enter.toUTCString('es-ES')}</p>
-          <p>{this.props.t("leave")}: {this.state.leave.toUTCString('es-ES')}</p>
+          <p>{this.props.t("enter")}: {this.state.enter.toUTCString()}</p>
+          <p>{this.props.t("leave")}: {this.state.leave.toUTCString()}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => this.setState({ showConfirm: false })}>
