@@ -148,7 +148,7 @@ class Dashboard extends React.Component<Props, State> {
 
     return (
       <FullLayout headline="Dashboard">
-        {updateHint}
+        {/*{updateHint}*/}
         <Row className="mb-4">
           {this.renderStatsCard(this.stats?.numUsers, this.props.t("users"), (this.state.orgAdmin ? "/users/": ""))}
           {this.renderStatsCard(this.stats?.numLocations, this.props.t("areas"), "/locations/")}

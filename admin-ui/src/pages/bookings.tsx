@@ -116,8 +116,10 @@ class Bookings extends React.Component<Props, State> {
         <td>{booking.user.email}</td>
         <td>{booking.space.location.name}</td>
         <td>{booking.space.name}</td>
-        <td>{Formatting.getFormatterShort().format(booking.enter)}</td>
-        <td>{Formatting.getFormatterShort().format(booking.leave)}</td>
+        {/*<td>{Formatting.getFormatterShort().format(booking.enter)}</td>
+        <td>{Formatting.getFormatterShort().format(booking.leave)}</td>*/}
+        <td>{booking.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'short',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}</td>
+        <td>{booking.leave.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'short',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}</td>
         <td><Button variant="danger" style={btnStyle} onClick={() => this.cancelBooking(booking)}><IconX className="feather" /></Button></td>
       </tr>
     );
