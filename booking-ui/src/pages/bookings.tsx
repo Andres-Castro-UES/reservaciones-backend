@@ -73,10 +73,10 @@ class Bookings extends React.Component<Props, State> {
           {/*<IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
           <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}<br />*/}
           {/*timeZone: 'UTC'*/}
-          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})}
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
+          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}
         </p>
       </ListGroup.Item>
     );
@@ -118,8 +118,8 @@ class Bookings extends React.Component<Props, State> {
           </Modal.Header>
           <Modal.Body>
             {/*<p>{this.props.t("confirmCancelBooking", { enter: formatter.format(this.state.selectedItem?.enter), interpolation: { escapeValue: false } })}</p>*/}
-            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'}), interpolation: { escapeValue: false } })}</p>
-            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'}), interpolation: { escapeValue: false } })}</p>
+            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'}), interpolation: { escapeValue: false } })}</p>
+            <p>{this.props.t("confirmCancelBooking", { enter: this.state.selectedItem?.enter.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'}), interpolation: { escapeValue: false } })}</p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={() => this.setState({ selectedItem: null })}>
