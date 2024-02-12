@@ -71,7 +71,9 @@ class Bookings extends React.Component<Props, State> {
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name} - {item.space.name}<br />
           <IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
-          <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}
+          <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}<br />
+          <IconEnter className="feather" />&nbsp;{item.enter.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.enter.toLocaleTimeString('es-SV')}<br />
+          <IconLeave className="feather" />&nbsp;{item.leave.toLocaleDateString('es-SV',{weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric'})} - {item.leave.toLocaleTimeString('es-SV')}
         </p>
       </ListGroup.Item>
     );

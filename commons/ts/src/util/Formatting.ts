@@ -5,7 +5,7 @@ export default class Formatting {
     static t: TFunction;
     
     static tbool(s: string) {
-        return Formatting.t(s) === "1";
+        return Formatting.t(s) === "0";
     }
 
     static getFormatter(local?: boolean): Intl.DateTimeFormat {
