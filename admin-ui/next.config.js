@@ -5,8 +5,7 @@ const nextConfig = {
   distDir: 'build',
   output: 'standalone',
   reactStrictMode: true,
-  //basePath: '/admin',
-  basePath: '/reservaciones/admin',
+  basePath: '/admin',  
   async redirects() {
     return [
       {

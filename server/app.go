@@ -73,8 +73,8 @@ func (a *App) InitializeRouter() {
 }
 
 func (a *App) RedirectRootPath(w http.ResponseWriter, r *http.Request) {
-	//w.Header().Set("Location", "/ui/")
-	w.Header().Set("Location", "/reservaciones/ui/")
+	w.Header().Set("Location", "/ui/")
+	//w.Header().Set("Location", "/reservaciones/ui/")
 	w.WriteHeader(http.StatusTemporaryRedirect)
 }
 
@@ -180,16 +180,16 @@ func (a *App) proxyHandler(w http.ResponseWriter, r *http.Request, backend strin
 }
 
 func (a *App) setupBookingUIProxy(router *mux.Router) {
-	//const basePath = "/ui"
-	const basePath = "/reservaciones/ui"
+	const basePath = "/ui"
+	//const basePath = "/reservaciones/ui"
 	router.Path(basePath).HandlerFunc(a.bookingUIProxyHandler)
 	router.Path(basePath + "/").HandlerFunc(a.bookingUIProxyHandler)
 	router.PathPrefix(basePath + "/").HandlerFunc(a.bookingUIProxyHandler)
 }
 
 func (a *App) setupAdminUIProxy(router *mux.Router) {
-	//const basePath = "/admin"
-	const basePath = "/reservaciones/admin"
+	const basePath = "/admin"
+	//const basePath = "/reservaciones/admin"
 	router.Path(basePath).HandlerFunc(a.adminUIProxyHandler)
 	router.Path(basePath + "/").HandlerFunc(a.adminUIProxyHandler)
 	router.PathPrefix(basePath + "/").HandlerFunc(a.adminUIProxyHandler)
