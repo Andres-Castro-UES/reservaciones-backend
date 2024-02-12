@@ -189,18 +189,18 @@ class Search extends React.Component<Props, State> {
       }        
     }
     else{
-      if (enter.getHours() > this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-1){
+      if (enter.getHours() >= this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-RuntimeConfig.INFOS.maxBookingDurationHours){
         
-        if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 >= this.state.prefWorkdayEnd){
+        if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 > this.state.prefWorkdayEnd){
           enter.setDate(enter.getDate() + 1);
-          enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+          enter.setHours(enter.getHours()+1, 0, 0, 0);
           leave.setDate(leave.getDate() + 1);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
         }
         else{
           if(enter.getHours() >= 11 && enter.getDay() == 6){
             enter.setDate(enter.getDate() + 2);
-            enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
+            enter.setHours(enter.getHours()+1, 0, 0, 0);
             leave.setDate(leave.getDate() + 2);
             leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
           }

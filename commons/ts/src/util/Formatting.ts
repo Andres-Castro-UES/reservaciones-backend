@@ -1,11 +1,11 @@
 import { TFunction } from "i18next";
 
 export default class Formatting {
-    static Language: string = "es";
+    static Language: string = "es-ES";
     static t: TFunction;
     
     static tbool(s: string) {
-        return Formatting.t(s) === "0";
+        return Formatting.t(s) === "1";
     }
 
     static getFormatter(local?: boolean): Intl.DateTimeFormat {
