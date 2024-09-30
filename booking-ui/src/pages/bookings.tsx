@@ -66,15 +66,14 @@ class Bookings extends React.Component<Props, State> {
       formatter = Formatting.getFormatterNoTime();
     }
     return (
-      <ListGroup.Item key={item.id} action={true} onClick={(e) => { e.preventDefault(); this.onItemPress(item); }}>
-        <h5>{Formatting.getDateOffsetText(item.enter, item.leave)}</h5>
+      <ListGroup.Item key={item.id} action={true} onClick={(e) => { e.preventDefault(); this.onItemPress(item); }}>        
         <p>
           <IconLocation className="feather" />&nbsp;{item.space.location.name} - {item.space.name}<br />
           {/*<IconEnter className="feather" />&nbsp;{formatter.format(item.enter)}<br />
           <IconLeave className="feather" />&nbsp;{formatter.format(item.leave)}<br />*/}
           {/*timeZone: 'UTC'*/}
           <IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
-          <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
+          <IconLeave className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'UTC',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
           {/*<IconEnter className="feather" />&nbsp;{item.enter.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}<br />
           <IconEnter className="feather" />&nbsp;{item.leave.toLocaleString("es-SV",{timeZone: 'America/El_Salvador',weekday: 'long',year: 'numeric',month: 'numeric',day: 'numeric',hour: 'numeric',minute: 'numeric'})}*/}
         </p>

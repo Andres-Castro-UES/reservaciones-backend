@@ -177,37 +177,42 @@ class Search extends React.Component<Props, State> {
     // Sunday - Saturday : 0 - 6
     if (enter.getHours() < this.state.prefWorkdayStart) {
       
-      if(enter.getDay() != 0){
+      if(enter.getDay() != 0 && enter.getDay() != 6){
         enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);          
         leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
       }
       else{
-        enter.setDate(enter.getDate() + 1);
-        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);
-        leave.setDate(leave.getDate() + 1);
+        if(enter.getDay() == 0){
+          enter.setDate(enter.getDate() + 1);
+          leave.setDate(leave.getDate() + 1);
+        }
+        if(enter.getDay() == 6){
+          enter.setDate(enter.getDate() + 2);          
+          leave.setDate(leave.getDate() + 2);
+        }
+        enter.setHours(this.state.prefWorkdayStart, 0, 0, 0);  
         leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
       }        
     }
     else{
       if (enter.getHours() >= this.state.prefWorkdayStart && enter.getHours() < this.state.prefWorkdayEnd-RuntimeConfig.INFOS.maxBookingDurationHours){
         
-        if (enter.getDay() == 0 || enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 > this.state.prefWorkdayEnd){
+        if (enter.getDay() == 0 || enter.getDay() == 6 ||enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours+1 > this.state.prefWorkdayEnd){
           enter.setDate(enter.getDate() + 1);
           enter.setHours(enter.getHours()+1, 0, 0, 0);
           leave.setDate(leave.getDate() + 1);
           leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
-        }
-        else{
-          if(enter.getHours() >= 11 && enter.getDay() == 6){
+
+          if(enter.getDay() == 6){
             enter.setDate(enter.getDate() + 2);
             enter.setHours(enter.getHours()+1, 0, 0, 0);
             leave.setDate(leave.getDate() + 2);
             leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
           }
-          else{
-            enter.setHours(enter.getHours() + 1,0,0,0);
-            leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
-          }
+        }
+        else{
+          enter.setHours(enter.getHours() + 1,0,0,0);
+          leave.setHours(enter.getHours()+RuntimeConfig.INFOS.maxBookingDurationHours,0,0,0);
         }
         
       }
@@ -549,11 +554,11 @@ class Search extends React.Component<Props, State> {
     let booking: Booking = new Booking();
     booking.enter = new Date(this.state.enter);
     booking.leave = new Date(this.state.leave);    
-    if(booking.leave.getHours() > 16 || (booking.leave.getHours() > 12 && booking.leave.getDay() == 6)|| booking.leave.getDay() == 0 || booking.enter.getHours() < 8 ){
+    if(booking.leave.getHours() > 16 || booking.leave.getDay() == 0 || booking.leave.getDay() == 6 || booking.enter.getHours() < 8 ){
       this.setState({
         loading: false,
         showError: true,
-        errorText: 'Error en horas seleccionadas. Debe respetar el horario establecido.'
+        errorText: 'Debe respetar el horario establecido: lunes a viernes de 8:00 a 16:00.'
       });
       return;
     }
@@ -739,7 +744,7 @@ class Search extends React.Component<Props, State> {
             <Form.Group as={Row} className="margin-top-10">
               <Col xs="2"><InfoIcon title={this.props.t("map")} color={'#555'} height="20px" width="20px" /></Col>       
               <Col xs="10">
-                <Form.Text className="text-muted">lun. a vier. de 8:00-16:00 y sáb. de 8:00-12:00</Form.Text>
+                <Form.Text className="text-muted">lunes a viernes de 8:00-16:00</Form.Text>
               </Col>
             </Form.Group>
           </Form>          

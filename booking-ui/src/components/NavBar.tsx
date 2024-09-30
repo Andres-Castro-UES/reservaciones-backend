@@ -184,9 +184,9 @@ class NavBar extends React.Component<Props, State> {
 
         return (
             <>
-                <Navbar  variant="dark" fixed="top" style={{backgroundColor:"#850101"}} expand={RuntimeConfig.EMBEDDED ? true : "xl"}>
+                <Navbar  variant="dark" fixed="top" style={{backgroundColor:"#8B0E13"}} expand={RuntimeConfig.EMBEDDED ? true : "xl"}>
                     <Container fluid={true}>
-                        <Navbar.Brand as={NavLink} to="/search"><img src="/ui/logo-ues.svg" alt="Universidad de El Salvador" /></Navbar.Brand>
+                        <Navbar.Brand as={NavLink} to="/search"><img src="/ui/logo-ues2024-version2-blanco.png" alt="Universidad de El Salvador" /></Navbar.Brand>
                         {collapsable}
                     </Container>
                 </Navbar>

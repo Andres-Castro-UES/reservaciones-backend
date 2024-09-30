@@ -237,8 +237,8 @@ class Login extends React.Component<Props, State> {
             <Button variant="primary" type="submit">{this.state.inPreflight ? <Loading showText={false} paddingTop={false} /> : <div className="feather-btn">&#10148;</div> }</Button>
           </InputGroup>
           <Form.Control.Feedback type="invalid">{this.props.t("errorInvalidEmail")}</Form.Control.Feedback>
-          <Form.Check type="checkbox" id="check-rememberme" label={this.props.t("rememberMe")} checked={this.state.rememberMe} onChange={(e: any) => this.setState({ rememberMe: e.target.checked })} />
-          <p className="margin-top-50"><Link href="/resetpw">{this.props.t("forgotPassword")}</Link></p>
+          {/*<Form.Check type="checkbox" id="check-rememberme" label={this.props.t("rememberMe")} checked={this.state.rememberMe} onChange={(e: any) => this.setState({ rememberMe: e.target.checked })} />*/}
+          {/*<p className="margin-top-50"><Link href="/resetpw">{this.props.t("forgotPassword")}</Link></p>*/}
         </Form>
         <p className="copyright-footer">DTI &copy; Universidad de El Salvador 2024</p>
       </div>
